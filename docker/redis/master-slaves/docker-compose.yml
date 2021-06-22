@@ -1,0 +1,96 @@
+version: "3"
+services:
+  redis_ms_master:
+    container_name: redis_ms_master
+    hostname: master.ms.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/master.conf:/usr/local/etc/redis/redis.conf:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.12
+        aliases:
+          - master.ms.redis.dev
+  redis_ms_slave_1:
+    container_name: redis_ms_slave_1
+    hostname: slave1.ms.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/slave_1.conf:/usr/local/etc/redis/redis.conf:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.13
+        aliases:
+          - slave1.ms.redis.dev
+  redis_ms_slave_2:
+    container_name: redis_ms_slave_2
+    hostname: slave2.ms.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/slave_2.conf:/usr/local/etc/redis/redis.conf:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.14
+        aliases:
+          - slave2.ms.redis.dev
+  redis_ms_sentinel_1:
+    container_name: redis_ms_sentinel_1
+    hostname: sentinel1.ms.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf:/usr/local/etc/redis:rw
+    entrypoint: redis-sentinel
+    command: /usr/local/etc/redis/sentinel_1.conf
+    ports:
+      - 26679:26679/tcp
+    networks:
+      dev:
+        ipv4_address: 172.28.5.22
+        aliases:
+          - sentinel1.ms.redis.dev
+  redis_ms_sentinel_2:
+    container_name: redis_ms_sentinel_2
+    hostname: sentinel2.ms.redis.dev
+    image: redis:latest
+    restart: always
+    ports:
+      - 26479:26479/tcp
+    volumes:
+      - ./conf:/usr/local/etc/redis:rw
+    entrypoint: redis-sentinel
+    command: /usr/local/etc/redis/sentinel_2.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.23
+        aliases:
+          - sentinel2.ms.redis.dev
+  redis_ms_sentinel_3:
+    container_name: redis_ms_sentinel_3
+    hostname: sentinel3.ms.redis.dev
+    image: redis:latest
+    restart: always
+    ports:
+      - 26579:26579/tcp
+    volumes:
+      - ./conf:/usr/local/etc/redis:rw
+    entrypoint: redis-sentinel
+    command: /usr/local/etc/redis/sentinel_3.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.24
+        aliases:
+          - sentinel3.ms.redis.dev
+networks:
+  dev:
+    external:
+      name: dev

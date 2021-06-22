@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dev_nginx:
+    container_name: dev_nginx
+    image: nginx:1.18.0-alpine
+    hostname: nginx.dev
+    networks:
+      dev:
+        aliases:
+          - nginx.dev
+    ports:
+      - 80:80/tcp
+    volumes:
+      - ./default.d:/etc/nginx/default.d:rw
+      - ./nginx.conf:/etc/nginx/nginx.conf:rw
+      - ./applications/static:/var/www/static:rw
+    restart: always
+networks:
+  dev:
+    external:
+      name: dev

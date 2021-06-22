@@ -1,0 +1,17 @@
+version: "3"
+services:
+  dev_beanstalkd:
+    container_name: dev_beanstalkd
+    hostname: beanstalkd.dev
+    image: rayyounghong/beanstalkd:latest
+    ports:
+      - 11300:11300/tcp
+    networks:
+      dev:
+        aliases:
+          - beanstalkd.dev
+    restart: always
+networks:
+  dev:
+    external:
+      name: dev

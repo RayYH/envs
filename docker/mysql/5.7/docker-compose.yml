@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  dev_mysql_57:
+    container_name: dev_mysql_57
+    hostname: mysql57.dev
+    image: mysql:5.7
+    networks:
+      dev:
+        aliases:
+          - mysql57.dev
+    restart: always
+    ports:
+      - 3346:3306/tcp
+      - 33460:33060/tcp
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: dev
+    volumes:
+      - ./log:/var/log/mysql:rw
+      - mysql57:/var/lib/mysql
+volumes:
+  mysql57:
+    external: true
+networks:
+  dev:
+    external:
+      name: dev

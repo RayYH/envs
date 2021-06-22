@@ -1,0 +1,96 @@
+version: "3"
+services:
+  redis_clusters_node_1:
+    container_name: redis_clusters_node_1
+    hostname: node1.clusters.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/node_1.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./cluster-confs:/usr/local/etc/redis/cluster-confs:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.31
+        aliases:
+          - node1.clusters.redis.dev
+  redis_clusters_node_2:
+    container_name: redis_clusters_node_2
+    hostname: node2.clusters.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/node_2.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./cluster-confs:/usr/local/etc/redis/cluster-confs:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.32
+        aliases:
+          - node2.clusters.redis.dev
+  redis_clusters_node_3:
+    container_name: redis_clusters_node_3
+    hostname: node3.clusters.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/node_3.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./cluster-confs:/usr/local/etc/redis/cluster-confs:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.33
+        aliases:
+          - node3.clusters.redis.dev
+  redis_clusters_node_4:
+    container_name: redis_clusters_node_4
+    hostname: node4.clusters.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/node_4.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./cluster-confs:/usr/local/etc/redis/cluster-confs:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.34
+        aliases:
+          - node4.clusters.redis.dev
+  redis_clusters_node_5:
+    container_name: redis_clusters_node_5
+    hostname: node5.clusters.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/node_5.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./cluster-confs:/usr/local/etc/redis/cluster-confs:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.35
+        aliases:
+          - node5.clusters.redis.dev
+  redis_clusters_node_6:
+    container_name: redis_clusters_node_6
+    hostname: node6.clusters.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/node_6.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./cluster-confs:/usr/local/etc/redis/cluster-confs:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    networks:
+      dev:
+        ipv4_address: 172.28.5.36
+        aliases:
+          - node6.clusters.redis.dev
+networks:
+  dev:
+    external:
+      name: dev

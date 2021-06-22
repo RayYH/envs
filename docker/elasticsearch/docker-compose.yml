@@ -1,0 +1,19 @@
+version: "3"
+services:
+  dev_elasticsearch:
+    container_name: dev_elasticsearch
+    hostname: elasticsearch.dev
+    image: elasticsearch:7.5.2
+    restart: always
+    ports:
+      - 9200:9200/tcp
+    environment:
+      - discovery.type=single-node
+    networks:
+      dev:
+        aliases:
+          - elasticsearch.dev
+networks:
+  dev:
+    external:
+      name: dev

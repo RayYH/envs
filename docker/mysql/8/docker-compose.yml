@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  dev_mysql:
+    container_name: dev_mysql
+    hostname: mysql.dev
+    image: mysql:latest
+    networks:
+      dev:
+        aliases:
+          - mysql.dev
+    restart: always
+    ports:
+      - 3336:3306/tcp
+      - 33360:33060/tcp
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: dev
+    volumes:
+      - ./log:/var/log/mysql:rw
+      - ./conf.d:/etc/mysql/mysql.conf.d:rw
+      - mysql:/var/lib/mysql
+volumes:
+  mysql:
+    external: true
+networks:
+  dev:
+    external:
+      name: dev

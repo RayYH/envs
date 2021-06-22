@@ -1,0 +1,15 @@
+version: "3"
+services:
+  dev_redis_rebloom:
+    container_name: dev_redis_rebloom
+    hostname: rebloom.redis.dev
+    image: redislabs/rebloom:latest
+    restart: always
+    networks:
+      dev:
+        aliases:
+          - rebloom.redis.dev
+networks:
+  dev:
+    external:
+      name: dev

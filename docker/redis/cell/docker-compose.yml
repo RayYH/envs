@@ -1,0 +1,15 @@
+version: "3"
+services:
+  dev_redis_cell:
+    container_name: dev_redis_cell
+    hostname: cell.redis.dev
+    image: carto/redis-cell:latest
+    restart: always
+    networks:
+      dev:
+        aliases:
+          - cell.redis.dev
+networks:
+  dev:
+    external:
+      name: dev

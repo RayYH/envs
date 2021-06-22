@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dev_redis_singletion:
+    container_name: dev_redis_singletion
+    hostname: singleton.redis.dev
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf:rw
+    entrypoint: redis-server
+    command: /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379/tcp
+    networks:
+      dev:
+        aliases:
+          - singleton.redis.dev
+networks:
+  dev:
+    external:
+      name: dev

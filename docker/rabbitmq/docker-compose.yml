@@ -1,0 +1,29 @@
+version: "3"
+services:
+  dev_rabbitmq:
+    container_name: dev_rabbitmq
+    hostname: rabbitmq.dev
+    image: rabbitmq:3-alpine
+    networks:
+      dev:
+        aliases:
+          - rabbitmq.dev
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+    environment:
+      RABBITMQ_DEFAULT_USER: dev
+      RABBITMQ_DEFAULT_PASS: secret
+    ports:
+      - 5672:5672/tcp
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    restart: always
+volumes:
+  rabbitmq:
+    external: true
+networks:
+  dev:
+    external:
+      name: dev
