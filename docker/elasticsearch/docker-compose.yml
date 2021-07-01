@@ -3,7 +3,7 @@ services:
   dev_elasticsearch:
     container_name: dev_elasticsearch
     hostname: elasticsearch.dev
-    image: elasticsearch:7.5.2
+    image: elasticsearch:7.13.2
     restart: always
     ports:
       - 9200:9200/tcp
