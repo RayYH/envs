@@ -15,3 +15,5 @@ log_output = FILE
 # binlog
 server_id = 4
 log_bin = mysql_bin_log
+log_slave_updates=1
+read_only=1
