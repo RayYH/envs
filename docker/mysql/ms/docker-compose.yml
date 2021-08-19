@@ -1,0 +1,46 @@
+version: "3"
+services:
+  mysql_ms_master:
+    container_name: mysql_ms_master
+    hostname: master.ms.mysql.dev
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3356:3306/tcp
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: dev
+    volumes:
+      - ./m//log:/var/log/mysql:rw
+      - ./m/conf.d:/etc/mysql/mysql.conf.d:rw
+    networks:
+      dev:
+        ipv4_address: 172.28.5.41
+        aliases:
+          - master.ms.mysql.dev
+  mysql_ms_slave:
+    container_name: mysql_ms_slave
+    hostname: slave.ms.mysql.dev
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3366:3306/tcp
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: dev
+    volumes:
+      - ./s/log:/var/log/mysql:rw
+      - ./s/conf.d:/etc/mysql/mysql.conf.d:rw
+    networks:
+      dev:
+        ipv4_address: 172.28.5.42
+        aliases:
+          - slave.ms.mysql.dev
+networks:
+  dev:
+    external:
+      name: dev
