@@ -5,12 +5,6 @@ ENV['VAGRANT_NO_PARALLEL'] = 'yes'
 
 Vagrant.configure(2) do |config|
 
-#   if Vagrant.has_plugin?("vagrant-proxyconf")
-#     config.proxy.http     = "http://172.16.16.1:1087/"
-#     config.proxy.https    = "http://172.16.16.1:1087/"
-#     config.proxy.no_proxy = "localhost,127.0.0.1,172.16.16.100,172.16.16.101,172.16.16.102,10.96.0.1,10.96.0.2,10.96.0.3,.example.com"
-#   end
-
   config.vm.provision "shell", path: "bootstrap.sh"
 
   # Kubernetes Master Server
