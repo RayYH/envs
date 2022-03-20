@@ -1,0 +1,4 @@
+root = true
+
+[*.{ts, tsx, yml, yaml, js, jsx, json}]
+indent_size = 2
