@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+# tracker_url='https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt'
+tracker_url='https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all.txt'
+path='http://localhost:6800/jsonrpc'
+passwd='xiaozhuai-openwrt-aria2-token'
+
+tracker=$(curl -s -f -L $tracker_url | grep . | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/,/g')
+
+[ -n "$tracker" ] && curl -s -f $path -d '{"jsonrpc":"2.0","method":"aria2.changeGlobalOption","id":"cron","params":["token:'$passwd'",{"bt-tracker":"'$tracker'"}]}'
+echo ""
