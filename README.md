@@ -1,6 +1,6 @@
 # Envs
 
-本地开发环境配置。
+Docker/K8s/VM playground.
 
 ## License
 
