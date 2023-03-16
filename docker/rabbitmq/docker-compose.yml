@@ -1,9 +1,9 @@
 version: "3"
 services:
-  dev_rabbitmq:
-    container_name: dev_rabbitmq
+  rabbitmq:
+    container_name: rabbitmq
     hostname: rabbitmq.dev
-    image: rabbitmq:3-alpine
+    image: rabbitmq:3-management
     networks:
       dev:
         aliases:
@@ -14,9 +14,10 @@ services:
         max-size: "50m"
     environment:
       RABBITMQ_DEFAULT_USER: dev
-      RABBITMQ_DEFAULT_PASS: secret
+      RABBITMQ_DEFAULT_PASS: password
     ports:
-      - 5672:5672/tcp
+      - 5672:5672
+      - 15672:15672
     volumes:
       - rabbitmq:/var/lib/rabbitmq
     restart: always
@@ -25,5 +26,5 @@ volumes:
     external: true
 networks:
   dev:
-    external:
-      name: dev
+    external: true
+    name: dev

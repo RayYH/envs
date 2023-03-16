@@ -1,6 +1,10 @@
 # Envs
 
-Docker/K8s/VM playground.
+```shell
+mkdir ~/Code
+
+git clone git@github.com:RayYH/envs.git ~/Envs
+```
 
 ## License
 
