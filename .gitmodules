@@ -1,3 +1,0 @@
-[submodule "docker/consul/learn-consul-docker"]
-	path = docker/consul/learn-consul-docker
-	url = https://github.com/hashicorp/learn-consul-docker
