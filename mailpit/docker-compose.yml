@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+    mailpit:
+        container_name: mailpit
+        restart: unless-stopped
+        volumes:
+            - './.data/mailpit-data:/data'
+            - './.data/authfile:/data/authfile'
+        environment:
+            - MP_DATA_FILE=/data/mailpit.db
+            - MP_UI_AUTH_FILE=/data/authfile
+            - MP_SMTP_AUTH_FILE=/data/authfile
+            - TZ=Asia/Shanghai
+            - MP_SMTP_AUTH_ALLOW_INSECURE=1
+        ports:
+            - '8025:8025'
+            - '1025:1025'
+        image: axllent/mailpit
