@@ -1,6 +1,10 @@
 # Apollo
 
 ```shell
+docker compose -f docker-compose.yml up -d
+docker compose -f docker-compose.yml logs -f
+
+# arm64
 docker compose -f docker-compose-arm64.yml up -d
 docker compose -f docker-compose-arm64.yml logs -f
 ```
