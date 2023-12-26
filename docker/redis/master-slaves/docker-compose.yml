@@ -7,6 +7,7 @@ services:
     restart: always
     volumes:
       - ./conf/master.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./sysctl.conf:/etc/sysctl.conf:rw
     entrypoint: redis-server
     command: /usr/local/etc/redis/redis.conf
     networks:
@@ -21,6 +22,7 @@ services:
     restart: always
     volumes:
       - ./conf/slave_1.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./sysctl.conf:/etc/sysctl.conf:rw
     entrypoint: redis-server
     command: /usr/local/etc/redis/redis.conf
     networks:
@@ -35,6 +37,7 @@ services:
     restart: always
     volumes:
       - ./conf/slave_2.conf:/usr/local/etc/redis/redis.conf:rw
+      - ./sysctl.conf:/etc/sysctl.conf:rw
     entrypoint: redis-server
     command: /usr/local/etc/redis/redis.conf
     networks:
@@ -49,6 +52,7 @@ services:
     restart: always
     volumes:
       - ./conf:/usr/local/etc/redis:rw
+      - ./sysctl.conf:/etc/sysctl.conf:rw
     entrypoint: redis-sentinel
     command: /usr/local/etc/redis/sentinel_1.conf
     ports:
@@ -67,6 +71,7 @@ services:
       - 26479:26479/tcp
     volumes:
       - ./conf:/usr/local/etc/redis:rw
+      - ./sysctl.conf:/etc/sysctl.conf:rw
     entrypoint: redis-sentinel
     command: /usr/local/etc/redis/sentinel_2.conf
     networks:
@@ -83,6 +88,7 @@ services:
       - 26579:26579/tcp
     volumes:
       - ./conf:/usr/local/etc/redis:rw
+      - ./sysctl.conf:/etc/sysctl.conf:rw
     entrypoint: redis-sentinel
     command: /usr/local/etc/redis/sentinel_3.conf
     networks:
